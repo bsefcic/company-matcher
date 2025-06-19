@@ -11,7 +11,7 @@ export const typeOrmConfigAsync: TypeOrmModuleAsyncOptions = {
     password: config.get<string>('POSTGRES_PASSWORD'),
     database: config.get<string>('POSTGRES_DB'),
     autoLoadEntities: true,
-    synchronize: false, // migrations will be used instead
+    synchronize: true,
     logging: config.get<string>('NODE_ENV') === 'development',
   }),
 };
