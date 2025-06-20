@@ -15,10 +15,10 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "Node",
-    "types": ["node"],
+    "types": ["jest", "node"],
     "esModuleInterop": true,
     "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
   },
   "exclude": ["node_modules", "dist"]
 }

@@ -1,21 +1,28 @@
 import * as cheerio from 'cheerio';
-import { parsePhoneNumberFromString } from 'libphonenumber-js';
+import { parsePhoneNumberFromString, CountryCode } from 'libphonenumber-js';
 
-export function extractPhones(html: string): string[] {
-  const $ = cheerio.load(html);
-  const text = $('body').text();
-  const regex = /(?:\+?\d[\s-]*){7,15}/g;
-  const rawPhones = text.match(regex) ?? [];
-  return rawPhones
-    .map(raw => parsePhoneNumberFromString(raw, 'US')) // default region, refine later
+export function extractPhones(html: string, defaultRegion: CountryCode = 'US'): string[] {
+  const text = cheerio.load(html)('body').text();
+  // broad pattern: sequences of digits/spaces/dashes/plus with min length 7
+  const reg = /(?:\+?\d[\d\s\-().]{6,}\d)/g;
+  const raw = text.match(reg) ?? [];
+
+  const normalised = raw
+    .map(r => parsePhoneNumberFromString(r, defaultRegion))
     .filter(Boolean)
     .map(p => p!.format('E.164'));
+
+  // dedupe & return
+  return [...new Set(normalised)];
 }
 
+const SOCIAL_PATTERNS =
+  /(https?:\/\/)?(www\.)?(facebook|fb|linkedin|twitter|x|instagram|tiktok)\.com\/[^\s"'<>]+/gi;
+
 export function extractSocialLinks(html: string): string[] {
-  const $ = cheerio.load(html);
-  return $('a[href]')
-    .toArray()
-    .map(el => $(el).attr('href')!)
-    .filter(href => /facebook\.com|linkedin\.com|twitter\.com|instagram\.com|tiktok\.com/.test(href));
+  const urls = (html.match(SOCIAL_PATTERNS) ?? []).map(u =>
+    // normalise scheme, strip trailing punctuation
+    u.replace(/^https?:\/\//, '').replace(/[).,]+$/, ''),
+  );
+  return [...new Set(urls)];
 }
