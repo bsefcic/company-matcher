@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmConfigAsync } from './config/typeorm.config';   // ← this line
 import { validationSchema } from './config/joi.validation';
 import { CompanyModule } from './company/company.module';
+import { ScraperModule } from './scraper/scraper.module';
 
 @Module({
   imports: [
@@ -13,8 +14,9 @@ import { CompanyModule } from './company/company.module';
       envFilePath: '.env',
       validationSchema,
     }),
-    TypeOrmModule.forRootAsync(typeOrmConfigAsync),   // ← and this line
-    CompanyModule,                                    // feature modules
+    TypeOrmModule.forRootAsync(typeOrmConfigAsync),
+    CompanyModule,
+    ScraperModule,
   ],
 })
 export class AppModule {}
