@@ -1,4 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, Index } from 'typeorm';
+
 import { Company } from './company.entity';
 
 export type SocialType = 'facebook' | 'linkedin' | 'twitter' | 'instagram' | 'tiktok';

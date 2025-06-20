@@ -1,5 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { Cluster } from 'playwright-cluster';
+
 import { extractPhones, extractSocialLinks } from './extract.utils';
 import { ScraperResult } from './types';
 

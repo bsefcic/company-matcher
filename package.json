@@ -8,9 +8,7 @@
     "build": "nest build",
     "lint": "eslint \"{src,test}/**/*.ts\" --fix",
     "format": "prettier --write .",
-    "typeorm:migrate:generate": "typeorm-ts-node-esm migration:generate -d src/data-source.ts",
-    "typeorm:migrate:run": "typeorm-ts-node-esm migration:run  -d src/data-source.ts",
-    "typeorm:migrate:revert": "typeorm-ts-node-esm migration:revert -d src/data-source.ts"
+    "seed:websites": "ts-node src/cli/seed-websites.ts"
   },
   "dependencies": {
     "@nestjs/common": "^11.1.3",
@@ -21,6 +19,7 @@
     "cheerio": "^1.1.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.2",
+    "csv-parse": "^5.6.0",
     "dotenv": "^16.5.0",
     "joi": "^17.13.3",
     "pg": "^8.16.0",
