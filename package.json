@@ -10,13 +10,15 @@
     "format": "prettier --write .",
     "seed:websites": "ts-node src/cli/seed-websites.ts",
     "test": "jest --passWithNoTests",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "crawler": "nest start --watch"
   },
   "dependencies": {
     "@nestjs/common": "^11.1.3",
     "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.1.3",
     "@nestjs/platform-express": "^11.1.3",
+    "@nestjs/schedule": "^6.0.0",
     "@nestjs/typeorm": "^11.0.0",
     "cheerio": "^1.1.0",
     "class-transformer": "^0.5.1",
