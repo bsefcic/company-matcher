@@ -7,6 +7,8 @@ import { validationSchema } from './config/joi.validation';
 import { CompanyModule } from './company/company.module';
 import { ScraperModule } from './scraper/scraper.module';
 import { CrawlerModule } from './crawler/crawler.module';
+import { EsModule } from './es/es.module';
+import { MatchModule } from './match/match.module';
 
 @Module({
   imports: [
@@ -18,7 +20,9 @@ import { CrawlerModule } from './crawler/crawler.module';
     TypeOrmModule.forRootAsync(typeOrmConfigAsync),
     CompanyModule,
     ScraperModule,
-    CrawlerModule
+    CrawlerModule,
+    EsModule,
+    MatchModule
   ],
 })
 export class AppModule {}

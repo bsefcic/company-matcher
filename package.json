@@ -9,11 +9,14 @@
     "lint": "eslint \"{src,test}/**/*.ts\" --fix",
     "format": "prettier --write .",
     "seed:websites": "ts-node src/cli/seed-websites.ts",
+    "seed:companies": "ts-node src/cli/seed-companies.ts",
+    "sync:es": "ts-node src/cli/sync-es.ts",
     "test": "jest --passWithNoTests",
     "test:watch": "jest --watch",
     "crawler": "nest start --watch"
   },
   "dependencies": {
+    "@elastic/elasticsearch": "^8.13.0",
     "@nestjs/common": "^11.1.3",
     "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.1.3",
