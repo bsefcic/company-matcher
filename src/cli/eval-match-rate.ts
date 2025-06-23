@@ -19,7 +19,6 @@ function buildBody(row: Record<string, string>) {
   return body;
 }
 
-
 fs.createReadStream('data/API-input-sample.csv')
   .pipe(parse({ columns: true, skip_empty_lines: true }))
   .on('data', (row: Record<string, string>) => {

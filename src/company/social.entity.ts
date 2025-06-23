@@ -11,7 +11,6 @@ export class Social {
   @Index()
   url!: string;
 
-  // ── FK ───────────
   @ManyToOne(() => Company, company => company.socials, { onDelete: 'CASCADE' })
   company!: Company;
 }

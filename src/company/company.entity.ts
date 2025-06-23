@@ -18,14 +18,13 @@ export class Company {
   id!: string;
 
   @Column({ length: 512 })
-  @Index({ unique: false }) // non‑unique – duplicates can exist before dedup step
+  @Index({ unique: false })
   name!: string;
 
   @Column({ type: 'varchar', length: 512, nullable: true })
   @Index({ unique: false })
   website?: string | null;
 
-  // ── Relations ─────────────────────────────
   @OneToMany(() => Phone, phone => phone.company, { cascade: true })
   phones!: Phone[];
 
@@ -35,7 +34,6 @@ export class Company {
   @OneToMany(() => Address, address => address.company, { cascade: true })
   addresses!: Address[];
 
-  // ── Audit ────────────────────────────────
   @CreateDateColumn()
   createdAt!: Date;
 

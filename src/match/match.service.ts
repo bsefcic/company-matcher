@@ -8,7 +8,7 @@ export class MatchService {
     name?: string;
     website?: string;
     phone?: string;
-    facebook?: string;
+    social?: string;
   }) {
     const must: any[] = [];
     const should: any[] = [];
@@ -21,7 +21,7 @@ export class MatchService {
 
     if (dto.phone) must.push({ term: { phones: dto.phone } });
 
-    if (dto.facebook) must.push({ term: { socials: dto.facebook } });
+    if (dto.social) must.push({ term: { socials: dto.social } });
 
     const { hits } = await esClient.search({
       index: 'companies_v1',

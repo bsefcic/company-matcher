@@ -15,7 +15,6 @@ export class Phone {
   @Column({ length: 64, nullable: true })
   raw?: string;
 
-  // ── FK ───────────
   @ManyToOne(() => Company, company => company.phones, { onDelete: 'CASCADE' })
   company!: Company;
 }

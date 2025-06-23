@@ -1,6 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { Cluster } from 'playwright-cluster';
-import { isURL } from 'validator';
 
 import { extractPhones, extractSocialLinks } from './extract.utils';
 import { ScraperResult } from './types';
@@ -19,8 +18,8 @@ export class ScraperService {
       playwrightOptions: {
         headless: true,
         args: [
-          '--ignore-certificate-errors',               // already helping
-          '--disable-features=BlockInsecurePrivateNetworkRequests', // skip some interstitials
+          '--ignore-certificate-errors',
+          '--disable-features=BlockInsecurePrivateNetworkRequests',
           '--allow-running-insecure-content',
         ],
       } as any,
@@ -30,7 +29,6 @@ export class ScraperService {
   async scrape(rawUrl: string): Promise<ScraperResult> {
     if (!this.cluster) await this.init();
 
-    // ① add scheme if missing
     const withScheme = (url: string) =>
       /^https?:\/\//i.test(url) ? url : `https://${url}`;
 
